@@ -1,0 +1,51 @@
+{% extends "template.html" %}
+{% load static %}
+
+{% block 'head' %}
+    <link rel="stylesheet" href="{% static 'usuarios/css/usuarios.css' %}">
+{% endblock 'head' %}
+
+{% block 'body' %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md d-flex justify-content-center">
+            <div class="cont-cadastro">
+                <br>
+                <br>
+                <section class="cont-logo">
+                    <img src="{% static 'usuarios/img/logo.png' %}" alt="imagem-logo" class="logo">
+                    <label class="text-logo">HEALING</label>
+                </section>
+                <hr>
+
+                <form action="" method="">
+                    <h2 class="fonte-destaque1">Cadastre-se</h2>
+                    <label for="">Username</label>
+                    <input type="text" name="username" id="" class="form-control" placeholder="Username">
+                    <br>
+                    <label for="">E-mail</label>
+                    <input type="text" name="email" id="" class="form-control" placeholder="email@email.com">
+                    <br>
+                    <div class="row">
+                        <div class="col-md">
+                            <label for="">Senha</label>
+                            <input type="password" name="senha" class="form-control" placeholder="password">
+                        </div>
+                        <div class="col-md">
+                            <label for="">Confirmar Senha</label>
+                            <input type="password" name="confirmar-senha" class="form-control" placeholder="confirm password">
+                        </div>
+                    </div>
+                    <br>
+
+                    <input type="submit" value="Cadastrar" class="btn btn-success btn-dark-color">
+                    <a href="#" class="btn btn-dark-color-outline">Já Possuo uma conta</a>
+                </form>
+            </div>
+        </div>
+        <div class="col-md bg-main d-flex justify-content-center align-items-center">
+            <img src="{% static 'usuarios/img/ilustracao.png' %}" alt="ilustracao">
+        </div>
+    </div>
+</div>
+{% endblock 'body' %}
