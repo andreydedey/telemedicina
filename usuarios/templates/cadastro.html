@@ -18,8 +18,18 @@
                 </section>
                 <hr>
 
-                <form action="" method="">
+                <form action="{% url 'cadastro' %}" method="POST">
+                    {% csrf_token %}
+
                     <h2 class="fonte-destaque1">Cadastre-se</h2>
+                    {% if messages %}
+                        {% for message in messages %}
+                            <section class="alert {{message.tags}}">
+                                {{message}}
+                            </section>
+                        {% endfor %}
+                    {% endif %}
+
                     <label for="">Username</label>
                     <input type="text" name="username" id="" class="form-control" placeholder="Username">
                     <br>
@@ -39,7 +49,7 @@
                     <br>
 
                     <input type="submit" value="Cadastrar" class="btn btn-success btn-dark-color">
-                    <a href="#" class="btn btn-dark-color-outline">Já Possuo uma conta</a>
+                    <a href="{% url 'login' %}" class="btn btn-dark-color-outline">Já Possuo uma conta</a>
                 </form>
             </div>
         </div>
