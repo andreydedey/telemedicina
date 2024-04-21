@@ -36,7 +36,7 @@ def cadastro(request):
             password=senha,
         )
 
-        return redirect('usuarios/login')
+        return redirect('/usuarios/login')
     
 
 def login_view(request):
@@ -54,7 +54,7 @@ def login_view(request):
             return redirect('/pacientes/home')
         
         add_message(request, constants.ERROR, 'Usuario ou senha inválidos')
-        return redirect('usuarios/login')
+        return redirect('/usuarios/login')
     
 
 def logout(request):
