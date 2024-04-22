@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect ,HttpResponse
-from medico.models import DadosMedico, Especialidades, DatasAbertas
+from medico.models import DadosMedico, Especialidades, DatasAbertas, is_medico
 from datetime import datetime
-from .models import Consulta
+from .models import Consulta, Documento
 from django.contrib.messages import add_message, constants
 
 # Create your views here.
@@ -21,7 +21,8 @@ def home(request):
 
         return render(request, 'home.html', {
            "medicos": medicos,
-           'especialidades': especialidades
+           'especialidades': especialidades,
+           "is_medico": is_medico(request.user)
        })
 
 
@@ -60,3 +61,21 @@ def minhas_consultas(request):
     return render(request, "minhas_consultas.html", {
         "minhas_consultas": minhas_consultas
     })
+
+
+def consulta(request, id_consulta):
+    if request.method == 'GET':
+        consulta = Consulta.objects.get(id=id_consulta)
+        dado_medico = DadosMedico.objects.get(user=consulta.data_aberta.user)
+        documentos = Documento.objects.filter(consulta=consulta)
+        return render(request, 'consulta.html', {
+                        'consulta': consulta,
+                        'dado_medico': dado_medico,
+                        'is_medico': is_medico(request.user),
+                        "documentos": documentos
+                        })
+    
+
+# Fazer a validação de segurança nos restantes pontos do código
+# Botão de cancelar consulta
+# Dashbord
